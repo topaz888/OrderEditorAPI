@@ -4,7 +4,7 @@ import dotenv from 'dotenv'
 dotenv.config({ path: './.env' })
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT;
 const IP = process.env.IP
 
 // Middleware to parse JSON bodies
