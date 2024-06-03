@@ -1,5 +1,6 @@
 // Load environment variables from a .env file.
-require('dotenv').config();
+import dotenv from 'dotenv'
+dotenv.config({ path: './.env' })
 
 // Import the Shopify API library.
 const Shopify = require('shopify-api-node');
