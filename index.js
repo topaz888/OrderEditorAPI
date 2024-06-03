@@ -1,8 +1,11 @@
 import { sendAMockOrder, cancelOrder } from './orderEditor.js';
 import express from 'express';
+import dotenv from 'dotenv'
+dotenv.config({ path: './.env' })
 
 const app = express();
 const PORT = 3000;
+const IP = process.env.IP
 
 // Middleware to parse JSON bodies
 app.use(express.json());
@@ -35,7 +38,7 @@ app.use((req, res) => {
     res.status(404).send('404 Not Found');
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, IP, () => {
     console.log(`Server is listening on port ${PORT}`);
 });
 
