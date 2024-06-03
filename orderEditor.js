@@ -9,7 +9,8 @@ import Shopify from 'shopify-api-node';
 const shopify = new Shopify({
     shopName: process.env.SHOP_NAME, // The shop name.
     apiKey: process.env.API_KEY, // API key for authentication.
-    password: process.env.ADMIN_TOKEN // API secret for authentication.
+    password: process.env.ADMIN_TOKEN, // API secret for authentication.
+    timeout: process.env.TIMEOUT | 100, // Set timeout to 100ms
 });
 
 async function createDraftOrder(_draftOrder){

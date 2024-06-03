@@ -1,11 +1,16 @@
 import { sendAMockOrder, cancelOrder } from './orderEditor.js';
 import express from 'express';
 import dotenv from 'dotenv'
+import cors from 'cors';
+
 dotenv.config({ path: './.env' })
 
 const app = express();
 const PORT = process.env.PORT;
 const IP = process.env.IP
+
+// Enable CORS
+app.use(cors());
 
 // Middleware to parse JSON bodies
 app.use(express.json());
