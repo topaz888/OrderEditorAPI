@@ -1,17 +1,5 @@
-// Load environment variables from a .env file.
-import dotenv from 'dotenv'
-dotenv.config({ path: './.env' })
+import { shopify } from './app.js';
 
-// Import the Shopify API library.
-import Shopify from 'shopify-api-node';
-
-// Initialize a new Shopify instance with credentials from environment variables.
-const shopify = new Shopify({
-    shopName: process.env.SHOP_NAME, // The shop name.
-    apiKey: process.env.API_KEY, // API key for authentication.
-    password: process.env.ADMIN_TOKEN, // API secret for authentication.
-    timeout: process.env.TIMEOUT | 100, // Set timeout to 100ms
-});
 
 async function createDraftOrder(_draftOrder){
     try {
@@ -22,12 +10,45 @@ async function createDraftOrder(_draftOrder){
     }
 }
 
+async function viewOrder(_order){
+    try{
+        const order = await shopify.order.get(_order)
+        return order;
+    } catch(error) {
+        console.error("Retrieve Order: " + error)
+        return error
+    }
+}
+
+async function removeItemFromOrder(_orderId, _lineItemId){
+    try{
+        const filterOrder = await filterLineItem(_orderId, _lineItemId);
+        const updatedOrder = await shopify.order.update(_orderId, {
+            line_items: filterOrder
+          });
+        return updatedOrder;
+    } catch(error) {
+        console.error("Cancel Order: " + error)
+        return error
+    }
+}
+
+async function filterLineItem(_orderId, _lineItemId) {
+    try{
+        const order = await viewOrder(_orderId)
+        const updatedLineItems = order.line_items.filter(item => item.id !== _lineItemId);
+        return updatedLineItems;
+    }catch(error) {
+        return error
+    }
+  }
+
 async function cancelOrder(_order){
     try{
         const order = await shopify.order.cancel(_order);
         return order;
     } catch(error) {
-        console.error("cancelOrder: " + error)
+        console.error("Cancel Order: " + error)
         return error
     }
 }
@@ -47,4 +68,4 @@ async function cancelMockOrder(){
 }
 
 
-export { sendAMockOrder, cancelMockOrder, cancelOrder }
+export { sendAMockOrder, cancelMockOrder, cancelOrder, viewOrder, removeItemFromOrder }
