@@ -17,6 +17,8 @@ const auth = new google.auth.GoogleAuth({
         const orderData = _response.orderEditCommit
         const authClient = await auth.getClient();
         google.options({ auth: authClient });
+        let time = new Data();
+        time = time.toLocaleString('en-US', { timeZone: 'America/New_York' })
         const appendValue = [
             [
                 `${orderData.order.name}`,
@@ -25,7 +27,7 @@ const auth = new google.auth.GoogleAuth({
                 `${orderData.order.customer.email}`,
                 `${orderData.order.customer.phone}`,
                 `${orderData.order.totalOutstandingSet.presentmentMoney.amount}`,
-                `${new Date()}`
+                `${time}`
             ]
         ]
         // console.log("appendValue: "+ appendValue)

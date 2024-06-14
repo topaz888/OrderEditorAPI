@@ -103,7 +103,7 @@ async function getOrderForGoogleSheet(_orderId) {
             id: `gid://shopify/Order/${_orderId}`
         }
       );
-      console.log(response)
+      // console.log(response)
       if(response.data.order){
           const error = new Error("Forbidden");
           error.status = 403; 
@@ -119,7 +119,7 @@ async function OrderEditBegin(_orderId) {
             id: `gid://shopify/Order/${_orderId}`
         }
       );
-      console.log(response)
+      // console.log(response)
       const error = response.orderEditBegin.userErrors
       if(error.length){
           const error = new Error("Forbidden OrderEditBegin");
@@ -138,7 +138,7 @@ async function OrderEdit(_calculatedOrderId, _lineItemId) {
             quantity: 0
         }
     );
-    console.log(response)
+    // console.log(response)
     const error = response.orderEditSetQuantity.userErrors
     if(error.length){
         const error = new Error("Forbidden");
@@ -155,7 +155,7 @@ export async function OrderEditCommit(_calculatedOrderId) {
             id: _calculatedOrderId,
         }
     )
-    console.log(response)
+    // console.log(response)
     const error = response.orderEditCommit.userErrors
     if(error.length){
         const error = new Error("Forbidden");
