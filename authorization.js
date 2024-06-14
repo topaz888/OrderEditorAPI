@@ -3,7 +3,7 @@ import { shopify } from './app.js';
 
 const createTokens = async (_customerId) => {
   try {
-    console.log("createTokens")
+    // console.log("createTokens")
       // Fetch customer details from Shopify Storefront API
       const response = await shopify.customer.get(_customerId);
       const payload = { customerId: response.id, email: response.email };
@@ -18,12 +18,12 @@ const createTokens = async (_customerId) => {
 
 const createAccessToken = async (_customerId) => {
   try {
-    console.log("createToken")
+    // console.log("createToken")
       // Fetch customer details from Shopify Storefront API
       const response = await shopify.customer.get(_customerId);
       const payload = { customerId: response.id, email: response.email };
       const accessToken = Jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: '15m' });
-      console.log("create token: ")
+      // console.log("create token: ")
       return { accessToken };
     } catch (error) {
       console.log(error)
@@ -34,7 +34,7 @@ const createAccessToken = async (_customerId) => {
 
   const verifyRefreshToken = (refreshToken) => {
     try {
-      console.log("verifyRefreshToken")
+      // console.log("verifyRefreshToken")
       Jwt.verify(refreshToken, process.env.REFRESH_SECRET_KEY, (err, user) => {
         if (err) return err
         const payload = { customerId: user.customerId, email: user.email };

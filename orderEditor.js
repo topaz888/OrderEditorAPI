@@ -27,8 +27,8 @@ async function removeItemFromOrder(_orderId, _lineItemId, user){
         const updatedOrder = await shopify.order.update(_orderId, {
             note:"Customer contacted us about a custom engraving on this iPod"
           });
-          console.log(updatedOrder)
-          console.log("update")
+        //   console.log(updatedOrder)
+        //   console.log("update")
         return updatedOrder;
     } catch(error) {
         console.error("Cancel Order: " + error)

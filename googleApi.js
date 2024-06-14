@@ -12,7 +12,7 @@ const auth = new google.auth.GoogleAuth({
 
   const writeToGoogleSheet = async (_response) => {
     try {
-        console.log(_response)
+        // console.log(_response)
         // const orderData = await getOrderForGoogleSheet(_orderid)
         const orderData = _response.orderEditCommit
         const authClient = await auth.getClient();
@@ -28,7 +28,7 @@ const auth = new google.auth.GoogleAuth({
                 `${new Date()}`
             ]
         ]
-        console.log("appendValue: "+ appendValue)
+        // console.log("appendValue: "+ appendValue)
         const response = await sheets.spreadsheets.values.append({
             spreadsheetId,
             range: 'Sheet1!A:G', // Replace with the range you want to write to

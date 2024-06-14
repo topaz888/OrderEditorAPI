@@ -19,31 +19,31 @@ app.use(cors());
 // Middleware to parse JSON bodies
 app.use(express.json());
 
-app.post('/data', async (req, res) => {
-    res.status(500).json({ error: 'Internal server error' });
-});
+// app.post('/data', async (req, res) => {
+//     res.status(500).json({ error: 'Internal server error' });
+// });
 
-app.post('/cancelOrder', authenticateToken,async (req, res) => {
-        const orderId = req.body.key;
-        if (!orderId) {
-            return res.status(400).json({ error: 'Order ID is required' });
-          }
-        try{
-            const order = await viewOrder(orderId)
-            if (order.customer.id !== req.user.customerId) {
-                return res.status(403).json({ error: 'Customer ID does not match order' });
-            }
-            await cancelOrder(orderId)
-            res.status(200).json({ message: `Order ${orderId} cancelled` });
-        } catch (error) {
-            if (error.code === 'ETIMEDOUT') {
-                res.status(500).json({ error: 'Request timed out' });
-            } else {
-                console.error('Error cancelling order:', error);
-                res.status(500).json({ error: 'Internal server error' });
-            }
-        }
-});
+// app.post('/cancelOrder', authenticateToken,async (req, res) => {
+//         const orderId = req.body.key;
+//         if (!orderId) {
+//             return res.status(400).json({ error: 'Order ID is required' });
+//           }
+//         try{
+//             const order = await viewOrder(orderId)
+//             if (order.customer.id !== req.user.customerId) {
+//                 return res.status(403).json({ error: 'Customer ID does not match order' });
+//             }
+//             await cancelOrder(orderId)
+//             res.status(200).json({ message: `Order ${orderId} cancelled` });
+//         } catch (error) {
+//             if (error.code === 'ETIMEDOUT') {
+//                 res.status(500).json({ error: 'Request timed out' });
+//             } else {
+//                 console.error('Error cancelling order:', error);
+//                 res.status(500).json({ error: 'Internal server error' });
+//             }
+//         }
+// });
 
 app.post('/updateOrder', authenticateToken,async (req, res) => {
     const orderId = req.body.key;
@@ -55,8 +55,8 @@ app.post('/updateOrder', authenticateToken,async (req, res) => {
     }
 
     try{
-        console.log(orderId)
-        console.log(lineItemId)
+        // console.log(orderId)
+        // console.log(lineItemId)
         const response = await OrderLineItemsCancel(orderId, lineItemId)
         await writeToGoogleSheet(response)
         res.status(200).json({ message: `Order ${orderId} cancelled` });
