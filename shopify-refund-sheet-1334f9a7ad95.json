@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "shopify-refund-sheet",
+  "private_key_id": "1334f9a7ad954c6a40308c7439909308ef39084b",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDEgBsMGwgZ+tD8\nkXgpW4GX2c0bZiIGcvuHudup/SFb9ocLJ/za290c7jQ511pXvEc0w9GhP5TXbFAd\nmylrR46VtcYcEp0omU7Og6DhENQ0RCBoohCtC4g6XAFW7LZoibgUQWY/Ft/oMvtK\nLPW/07/HraXrtnHljUt5gcJVuTUfuvSdDqFepyNWQ2crGjLGfsCmgZceZ40cFFAc\naTHGVB9x4XEY6QdMLOnRHHdYZL312izmOTxD4poifeeuJUmvjfSqHKD/AHHkyTJw\n0re1t53YZT4V0wZ2S0im+CFnW3GAqOGC0qNItSzrrXeBHbnn1U3I/x+ml17qf1Uw\nr6zwI5OtAgMBAAECggEAKsGFIRkwphaBKrOsZbNXe2cUzgVnGegi+uFh/pbpj00R\nDUhiKGz2q7jY/Ezzh2ucQsro7iEbjdQvioGcfY9QYxruRGV4dMEG+MCDXPWAdu7r\n7lh1MHH17lzenb9b4Vs2BpJEYS3lAm01aGpn/plgfV43YBaOqdgYuBOX6XcnLAPr\nxp8mKuVt477uNENrVlzmawqXiU3KFis7kcjxQulOgUXT6v6tIE5lBQaphzcMoGQ6\nJRk76rfh0GlNH1JYcJC8TghKZHR66lRgopAAajUtvr4+FBIFCZEN9jMxcLrTeAfo\nkxOCsq2SpLqzir74F5NBlr4852HhOHLEnGe80lU7MQKBgQD60dNtHAxT1TCSoqO5\nhyKz+w9YgtffTFvsIcwVz8KEPo6NXobCZTRQr/g2ejLVQsvV927pXHf6NSi/RfVS\nYUX6ku9SK/qCGm72dyyW3/DMrBZ9MzSTbY6uUkgc0RYpYAzId72qGgdoHuMqyjaS\nJpExwraGrg3BppyQsKJgT+TFZwKBgQDIjxMMcO3O1jmAGY9mCtzcfJvGncN24MmF\nkUKljWTX+gOXPIcIh2bNM5owrVqzEWXmvi/Fp/DTn93Ih8sBqnaQxLqxVU4wJySK\nH2i/7LobkaF2hWik8vDjci4xeBsgSzQt0HvqfnQ5zsbZE1kjL27jCz3VHi/8TIDM\n/RDLw1K9ywKBgETelmowOGZQdGzfAYuwwmOe/SC1lKa4pcjZotseV+/N6YCBwwjf\nlxTMrJ/wv8J0+9k9fpPPExZ9wDl88RZ0pS1faR0r/DX7IhrEsFahGNJqMiagh8Av\nZe0RpMFc2/PybrAgyNBLI1uAl6mpKoDI3DdImquyYQ6aPAUyqvM9HLjjAoGAG02v\nEDCHj3MGnPPd28x6yOGF64IqzBJKHQ7rfdJD+kslFf+9emHEkwcFZL8U6+/gaYtW\nwZfdZ1IKRXSHJJDqV0cRC3dLj66kgNFJ12cI5xvqWVJMLriMJsqykzWAq+LRFbOe\nSwwwEnaeB4tkxS997xbmsg7MBZL8ret9z9+lcgUCgYEAjZF/WHYogU0usJ+rqtjW\nZsLIGGMrVivSKYlh4CyWAv6uBQ27Uc7jDMtBayOCtO6g5+BA09P5/1ezkklNkXMw\naizt1gPnlLMZdhGIYcKR8tM1bfpzZYtEvE+iIgr6QDfRT/DwaEYW219RBr+8B0Yp\nEwzfldeJEx8CnVJDn4VPN/U=\n-----END PRIVATE KEY-----\n",
+  "client_email": "shopify-refund-sheet@shopify-refund-sheet.iam.gserviceaccount.com",
+  "client_id": "115439101835498070276",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/shopify-refund-sheet%40shopify-refund-sheet.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

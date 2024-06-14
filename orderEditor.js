@@ -7,6 +7,7 @@ async function createDraftOrder(_draftOrder){
         return draftOrder; // Return the created product.
     } catch(error) {
         console.error(error); // Log any errors encountered.
+        return error
     }
 }
 
@@ -20,12 +21,14 @@ async function viewOrder(_order){
     }
 }
 
-async function removeItemFromOrder(_orderId, _lineItemId){
+async function removeItemFromOrder(_orderId, _lineItemId, user){
     try{
-        const filterOrder = await filterLineItem(_orderId, _lineItemId);
+        const filterOrder = await filterLineItem(_orderId, _lineItemId, user);
         const updatedOrder = await shopify.order.update(_orderId, {
-            line_items: filterOrder
+            note:"Customer contacted us about a custom engraving on this iPod"
           });
+          console.log(updatedOrder)
+          console.log("update")
         return updatedOrder;
     } catch(error) {
         console.error("Cancel Order: " + error)
@@ -33,10 +36,20 @@ async function removeItemFromOrder(_orderId, _lineItemId){
     }
 }
 
-async function filterLineItem(_orderId, _lineItemId) {
+async function filterLineItem(_orderId, _lineItemId, user) {
     try{
         const order = await viewOrder(_orderId)
-        const updatedLineItems = order.line_items.filter(item => item.id !== _lineItemId);
+        if (order.customer.id !== user.customerId) {
+            const error = new Error("Forbidden");
+            error.status = 403;
+            throw error;
+        }
+        const updatedLineItems = order.line_items.map(item => {
+            if (item.id == _lineItemId) {
+              return { ...item, quantity: 2 };
+            }
+            return item;
+        })
         return updatedLineItems;
     }catch(error) {
         return error
