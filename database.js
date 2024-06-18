@@ -1,5 +1,7 @@
 import pkg from 'pg';
 const { Client } = pkg;
+import fs  from 'fs';
+import path from 'path';
 
 function serializeDataBaseData(_response) { 
     const orderData = _response.orderEditCommit
@@ -27,7 +29,7 @@ async function syncToDatabase(_response) {
       port: process.env.DATABASE_PORT,
       ssl: {
         rejectUnauthorized: true,
-        ca: process.env.SSL_CA,
+        ca: fs.readFileSync(process.env.SSL_CA).toString(),
       }
     });
   
