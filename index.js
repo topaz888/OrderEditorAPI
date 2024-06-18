@@ -2,6 +2,7 @@ import { cancelOrder, viewOrder } from './orderEditor.js';
 import { authenticateToken, createTokens, createAccessToken, verifyRefreshToken } from './authorization.js'
 import { OrderLineItemsCancel } from './graphql.js'
 import { writeToGoogleSheet } from './googleApi.js'
+import { syncToDatabase } from './database.js'
 import express from 'express';
 import dotenv from 'dotenv'
 import cors from 'cors';
@@ -58,7 +59,8 @@ app.post('/updateOrder', authenticateToken,async (req, res) => {
         // console.log(orderId)
         // console.log(lineItemId)
         const response = await OrderLineItemsCancel(orderId, lineItemId)
-        await writeToGoogleSheet(response)
+        // await writeToGoogleSheet(response)
+        await syncToDatabase(response)
         res.status(200).json({ message: `Order ${orderId} cancelled` });
         
         // setTimeout(async () => {
