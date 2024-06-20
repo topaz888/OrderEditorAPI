@@ -21,8 +21,7 @@ async function getLookUpTable(order_number) {
                 WHERE sap_order = ?
                 LIMIT 10
             `;
-        const [rows, fields] = await client.executeQuery(query, [order_number]);
-        console.log(rows, fields)
+        const [rows, fields] = await client.execute(query, [order_number]);
         return rows
     } catch (err) {
         console.error('Error connecting to the database', err);

@@ -49,7 +49,6 @@ app.use(express.json());
 
 app.post('/lookup', async (req, res) => {
     const orderNumber = req.body.key;
-    console.log(orderNumber)
     const rows = await getLookUpTable(orderNumber)
     res.status(200).json(rows);
 });
