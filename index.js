@@ -47,7 +47,7 @@ app.use(express.json());
 //         }
 // });
 
-app.post('/lookup', async (req, res) => {
+app.get('/lookup', async (req, res) => {
     const orderNumber = req.body.key;
     const rows = await getLookUpTable(orderNumber)
     res.status(200).json(rows);
