@@ -22,6 +22,7 @@ async function getLookUpTable(order_number) {
                 LIMIT 10
             `;
         const [rows, fields] = await client.executeQuery(query, [order_number]);
+        console.log(rows, fields)
         return rows
     } catch (err) {
         console.error('Error connecting to the database', err);
