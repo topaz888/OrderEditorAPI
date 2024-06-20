@@ -3,6 +3,7 @@ import { authenticateToken, createTokens, createAccessToken, verifyRefreshToken 
 import { OrderLineItemsCancel } from './graphql.js'
 import { writeToGoogleSheet } from './googleApi.js'
 import { syncToDatabase } from './database.js'
+import { getLookUpTable } from './lookup.js'
 import express from 'express';
 import dotenv from 'dotenv'
 import cors from 'cors';
@@ -45,6 +46,12 @@ app.use(express.json());
 //             }
 //         }
 // });
+
+app.post('/lookup', async (req, res) => {
+    const orderNumber = req.body.key;
+    const rows = await getLookUpTable(orderNumber)
+    res.status(200).json(rows);
+});
 
 app.post('/updateOrder', authenticateToken,async (req, res) => {
     const orderId = req.body.key;
