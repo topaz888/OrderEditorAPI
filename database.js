@@ -11,11 +11,19 @@ function serializeDataBaseData(_response) {
             `${orderData.order.customer.email}`,
             `${orderData.order.customer.phone}`,
             `${orderData.order.totalOutstandingSet.presentmentMoney.amount}`,
-            `${new Date(new Date().toLocaleString('en', {timeZone: 'America/New_York'}))}`,
+            formatDateForMySQL(new Date().toLocaleString('en', { timeZone: 'America/New_York' })),
             `Pending`
         ]
     ]
     return appendValue
+}
+
+// Helper function to format date in 'YYYY-MM-DD HH:MM:SS' format
+function formatDateForMySQL(date) {
+    const d = new Date(date);
+    const pad = (num) => (num < 10 ? '0' + num : num);
+
+    return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
 }
 
 // Function to sync data to PostgreSQL
