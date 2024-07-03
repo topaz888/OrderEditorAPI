@@ -11,7 +11,8 @@ function serializeDataBaseData(_response) {
             `${orderData.order.customer.email}`,
             `${orderData.order.customer.phone}`,
             `${orderData.order.totalOutstandingSet.presentmentMoney.amount}`,
-            `${new Date(new Date().toLocaleString('en', {timeZone: 'America/New_York'}))}`
+            `${new Date(new Date().toLocaleString('en', {timeZone: 'America/New_York'}))}`,
+            `Pending`
         ]
     ]
     return appendValue
@@ -32,8 +33,8 @@ async function syncToDatabase(_response) {
     try{
         await client.connect();
         const data = serializeDataBaseData(_response)
-        const insertQuery =  `INSERT INTO googleSheet_database (order_number, order_id, customer_name, customer_email, customer_phone, total_outstanding, created_at)
-        VALUES (?, ?, ?, ?, ?, ?, ?)
+        const insertQuery =  `INSERT INTO google_refund_sheet (shopify_order_number, shopify_order_id, customer_name, customer_email, customer_phone, total_outstanding, created_at, refund_status)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         `;
         for (let row of data) {
             await client.query(insertQuery, row);
