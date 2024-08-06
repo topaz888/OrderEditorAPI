@@ -2,7 +2,7 @@ import mysql from 'mysql2/promise';
 import fs  from 'fs';
 
 // Function to sync data to PostgreSQL
-async function getLookUpTable(order_number) {
+async function syncLookUpTable() {
     const client = await mysql.createConnection({
       user: process.env.DATABASE_USER,
       host: process.env.DATABASE_HOST,
@@ -16,13 +16,14 @@ async function getLookUpTable(order_number) {
     try{
         await client.connect();
         const query =  `
-                SELECT Status, ETA
-                FROM eta_lookup
-                WHERE sap_order = ?
+                SELECT Shopify_Order, stock_status, ETA_Status
+                FROM filter_so_data
+                WHERE id = ?
                 LIMIT 10
             `;
+        const order_number = 1;
         const [rows, fields] = await client.execute(query, [order_number]);
-        return rows
+        return [rows, fields]
     } catch (err) {
         console.error('Error connecting to the database', err);
     } finally {
@@ -30,4 +31,4 @@ async function getLookUpTable(order_number) {
     }
   }
 
-  export { getLookUpTable }
+  export { syncLookUpTable }

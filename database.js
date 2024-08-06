@@ -11,7 +11,7 @@ function serializeDataBaseData(_response) {
             `${orderData.order.customer.email}`,
             `${orderData.order.customer.phone}`,
             `${orderData.order.totalOutstandingSet.presentmentMoney.amount}`,
-            formatDateForMySQL(new Date().toLocaleString('en', { timeZone: 'America/New_York' })),
+            `${new Date().toLocaleString('en', { timeZone: 'America/New_York' })}`,
             `Pending`
         ]
     ]
@@ -53,5 +53,32 @@ async function syncToDatabase(_response) {
         await client.end();
     }
   }
+
+//get database filtered-so-data
+// Function to sync data to PostgreSQL
+async function syncToDatabase(_response) {
+    const client = await mysql.createConnection({
+      user: process.env.DATABASE_USER,
+      host: process.env.DATABASE_HOST,
+      database: process.env.DATABASE_DATABASE,
+      password: process.env.DATABASE_PASSWORD,
+      port: process.env.DATABASE_PORT,
+      ssl: {
+        ca: fs.readFileSync(process.env.SSL_CA).toString(),
+      }
+    });
+    try{
+        await client.connect();
+        const getOrderStatusQuery =  `SELECT Shopify_Order, ETA_status
+        `;
+        for (let row of data) {
+            await client.query(getOrderStatusQuery, row);
+        }
+    } catch (err) {
+        console.error('Error connecting to the database', err);
+    } finally {
+        await client.end();
+    }
+}
 
   export { syncToDatabase }

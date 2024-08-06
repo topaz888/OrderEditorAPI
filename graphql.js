@@ -95,6 +95,35 @@ mutation orderEditCommit($id: ID!) {
 }
 `;
 
+const ORDER_EDIT_METAFIELD_MUTATION = 
+`#graphql
+mutation {
+  productUpdate(
+  input : {
+    id: "gid://shopify/Product/1",
+    metafields: [
+      {
+        namespace: "instructions",
+        key: "wash",
+        value: "cold wash",
+        type: "single_line_text_field",
+      }
+    ]
+  }) {
+    product {
+      metafields(first: 100) {
+        edges {
+          node {
+            namespace
+            key
+            value
+          }
+        }
+      }
+    }
+  }
+}
+`;
 
 async function getOrderForGoogleSheet(_orderId) {
 	const response = await shopify.graphql(

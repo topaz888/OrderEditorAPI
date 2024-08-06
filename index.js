@@ -47,11 +47,11 @@ app.use(express.json());
 //         }
 // });
 
-app.get('/lookup', async (req, res) => {
-    const orderNumber = req.body.key;
-    const rows = await getLookUpTable(orderNumber)
-    res.status(200).json(rows);
-});
+// app.get('/lookup', async (req, res) => {
+//     const orderNumber = req.body.key;
+//     const rows = await getLookUpTable()
+//     res.status(200).json(rows);
+// });
 
 app.post('/updateOrder', authenticateToken,async (req, res) => {
     const orderId = req.body.key;
